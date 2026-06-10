@@ -1,179 +1,263 @@
----
-name: apple-ui
-description: "Apple Human Interface Guidelines — complete design system for web: principles, colors, typography, layout, components, patterns, dark mode, accessibility, materials, motion, writing."
-version: 1.0.0
-author: Hermes Agent
-license: MIT
-metadata:
-  source: https://developer.apple.com/design/human-interface-guidelines
-  last_updated: 2026-06-11
-  platform: web
-  tags: [design, apple, ui, typography, color, layout, components, dark-mode, materials, motion]
----
+# Apple HIG Components Reference
 
-# Apple UI Design System
+## Buttons
+- **Sizes**: xs (28px), sm (34px), md (44px), lg (50px), xl (56px)
+- **Styles**: Filled, Tinted, Gray, Plain, Bordered, Destructive
+- **Shapes**: Circle (icon), Capsule (text+icon), Rounded rect (text)
+- **States**: Normal, Press, Hover, Selected, Unavailable, Disabled
+- **Hit region**: 44×44px minimum (60×60px visionOS)
 
-Apple's Human Interface Guidelines adapted for web development. Complete design tokens, component specs, and patterns — all in CSS/HTML.
+## Text Fields
+- **Height**: 44px
+- **Corner radius**: 10px
+- **Padding**: 16px horizontal
+- **Placeholder**: tertiary label color
+- **Focus**: 2px blue outline
+- **Clear button**: trailing end
+- **Secure field**: password input
 
-## Quick Reference
+## Toggles
+- **Switch**: 51×31px, green=on, gray=off
+- **Checkbox**: 22×22px, 4px radius, checkmark
+- **Radio**: 22×22px, circle, filled=selected
+- **Mixed state**: checkbox only (dash)
 
-- `references/foundations.md` — Color, typography, layout, materials, motion, dark mode specs
-- `references/components.md` — All UI components with CSS implementations
-- `references/patterns.md` — 25 design patterns (loading, onboarding, searching, etc.)
-- `references/additional-components.md` — 35 additional components (charts, widgets, notifications, etc.)
+## Sliders
+- **Track**: 4px height, 2px radius
+- **Thumb**: 28×28px circle, white, shadow
+- **Track fill**: accent color
+- **Optional min/max icons**
+- **Tick marks** (macOS)
 
-## Coverage Summary
+## Steppers
+- **Two buttons** (-/+), 44×36px each
+- **Border**: 1px separator
+- **Radius**: 8px
+- **Value display** between buttons
+- **Shift-click** for ×10 (macOS)
 
-| Category | Pages | Status |
-|----------|-------|--------|
-| Foundations | 18/18 | ✅ Complete |
-| Components | 50+ | ✅ Complete |
-| Patterns | 25/25 | ✅ Complete |
-| Inputs (hardware) | 13 | ⏭️ Skipped (not web-relevant) |
-| Technologies | N/A | ⏭️ Skipped (platform-specific) |
+## Segmented Controls
+- **Height**: 32px
+- **Radius**: 8px
+- **Padding**: 2px
+- **Segments**: equal width
+- **Active**: white bg + shadow
+- **Limit**: 5-7 segments
 
-## Design Principles
+## Pickers
+- **Compact**: button + popover
+- **Inline**: expanded in place
+- **Wheels**: scrolling columns
+- **Date modes**: Date, Time, Date & Time, Countdown
+- **Minute interval**: divisible by 60
 
-1. **Clarity** — Text legible at every size, icons precise, adornments subtle
-2. **Deference** — UI supports content, doesn't compete with it
-3. **Depth** — Visual layers and realistic motion convey hierarchy
+## Color Wells
+- **Square shape**
+- **Shows current color**
+- **Opens color picker** on click
+- **Supports drag & drop** (macOS)
 
-## Quick Start
+## Lists and Tables
+- **Text-centric content**
+- **Row height**: auto or fixed
+- **Headers**: 13px, uppercase, gray
+- **Selected**: light blue bg
+- **Edit mode** support
 
-```css
-/* Import Apple design tokens */
-:root {
-  /* Colors */
-  --apple-blue: #007AFF;
-  --apple-green: #34C759;
-  --apple-red: #FF3B30;
-  --apple-orange: #FF9500;
-  --apple-yellow: #FFCC00;
-  --apple-pink: #FF2D55;
-  --apple-purple: #AF52DE;
-  --apple-indigo: #5856D6;
-  --apple-teal: #5AC8FA;
-  
-  /* Backgrounds */
-  --bg-primary: #FFFFFF;
-  --bg-secondary: #F2F2F7;
-  --bg-elevated: #FFFFFF;
-  
-  /* Labels */
-  --label-primary: #000000;
-  --label-secondary: rgba(60, 60, 67, 0.6);
-  --label-tertiary: rgba(60, 60, 67, 0.3);
-  
-  /* Spacing (4px base) */
-  --space-1: 4px;
-  --space-2: 8px;
-  --space-3: 12px;
-  --space-4: 16px;
-  --space-6: 24px;
-  --space-8: 32px;
-  
-  /* Radius */
-  --radius-sm: 8px;
-  --radius-md: 12px;
-  --radius-lg: 16px;
-  --radius-full: 9999px;
-  
-  /* Shadows */
-  --shadow-sm: 0 1px 3px rgba(0,0,0,0.08);
-  --shadow-md: 0 4px 12px rgba(0,0,0,0.12);
-  --shadow-lg: 0 8px 24px rgba(0,0,0,0.16);
-  
-  /* Typography */
-  --font-sans: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Segoe UI', Roboto, sans-serif;
-  --font-mono: 'SF Mono', ui-monospace, 'Cascadia Code', Menlo, monospace;
-}
+## Collections
+- **Image-centric content**
+- **Grid layout** with auto-fill
+- **Aspect ratio**: 1:1 or custom
+- **Hover**: scale 1.02
 
-/* Dark mode */
-@media (prefers-color-scheme: dark) {
-  :root {
-    --bg-primary: #000000;
-    --bg-secondary: #1C1C1E;
-    --bg-elevated: #1C1C1E;
-    --label-primary: #FFFFFF;
-    --label-secondary: rgba(235, 235, 245, 0.6);
-    --label-tertiary: rgba(235, 235, 245, 0.3);
-  }
-}
-```
+## Split Views
+- **Multi-pane layout**
+- **Primary**: 300px (min 200, max 400)
+- **Secondary**: flex 1
+- **Divider**: 4px, resize cursor
+- **Three-pane** support
 
-## Component Quick Reference
+## Navigation Bars
+- **Height**: 44px
+- **Title**: 17px Bold (center) or 34px Large Title (left)
+- **Back button**: < chevron + previous page title
+- **Blur background**: backdrop-filter: blur(20px)
 
-### Buttons
-```css
-.btn { height: 44px; padding: 0 20px; border-radius: 10px; font-size: 17px; font-weight: 600; }
-.btn-filled { background: var(--apple-blue); color: white; }
-.btn-tinted { background: rgba(0,122,255,0.1); color: var(--apple-blue); }
-.btn-plain { background: transparent; color: var(--apple-blue); font-weight: 400; }
-```
+## Tab Bars
+- **Height**: 83px (49 + 34 safe area)
+- **Icon size**: 25×25px
+- **Active tint**: accent color
+- **Inactive tint**: gray
+- **Badge**: red oval with white text
 
-### Cards
-```css
-.card { background: var(--bg-elevated); border-radius: 12px; box-shadow: var(--shadow-sm); }
-.card:hover { transform: translateY(-2px); box-shadow: var(--shadow-md); }
-```
+## Sidebars
+- **Width**: 280px (min 200, max 320)
+- **Sections** with titles
+- **Selected**: accent color bg
+- **Hide/show** support
 
-### Lists
-```css
-.list-item { display: flex; align-items: center; gap: 12px; padding: 12px 16px; min-height: 44px; }
-.list-item:hover { background: var(--fill-quaternary); }
-```
+## Toolbars
+- **Height**: 44px
+- **Title**: ≤15 characters
+- **Back/Forward** navigation
+- **More menu** for overflow
 
-### Navigation
-```css
-.navbar { height: 44px; padding: 0 16px; background: var(--bg-primary); backdrop-filter: blur(20px); }
-.tabbar { height: 83px; background: var(--bg-primary); border-top: 0.5px solid var(--separator); }
-```
+## Search Fields
+- **Height**: 36px
+- **Radius**: 10px
+- **Search icon**: 16px, gray
+- **Clear button**: 18px circle
+- **Scope bar** for categories
+- **Tokens** for search criteria
 
-### Forms
-```css
-.input { height: 44px; padding: 0 16px; background: var(--bg-tertiary); border-radius: 10px; }
-.toggle { width: 51px; height: 31px; background: var(--fill-primary); border-radius: 15.5px; }
-.toggle.active { background: var(--apple-green); }
-```
+## Alerts
+- **Width**: 270px
+- **Title**: 17px, semibold
+- **Message**: 13px, secondary color
+- **Max 3 buttons**, 1-2 words each
+- **Destructive**: system red
 
-### Modals
-```css
-.sheet { position: fixed; bottom: 0; max-height: 90vh; background: var(--bg-elevated); border-radius: 12px 12px 0 0; }
-.alert { width: 270px; background: var(--bg-elevated); border-radius: 14px; }
-```
+## Action Sheets
+- **Destructive button** at top, red style
+- **Always provide** Cancel button
+- **Avoid scrolling**
+- **Title**: single line
 
-## Key Numbers
+## Sheets
+- **Support detents** (large, medium)
+- **Include grabber** for drag
+- **Modal or nonmodal**
+- **Max height**: 90vh
 
-- **Touch target**: 44×44px minimum (60×60px for visionOS)
-- **Contrast ratio**: 4.5:1 minimum, 7:1 recommended
-- **Font sizes**: Body 17px, minimum 16px
-- **Spacing**: 4px base grid
-- **Animation**: 200ms fast, 300ms standard, 500ms slow
-- **Corner radius**: 8px small, 12px medium, 16px large
+## Popovers
+- **Arrow points** to source control
+- **Size to fit** content
+- **Don't use** for warnings
+- **macOS**: detachable
 
-## Pitfalls
+## Scroll Views
+- **No visual appearance**
+- **Elastic scrolling**
+- **Page-by-page** support
+- **Scroll indicators**: semi-transparent
 
-- **Don't use emoji as icons** — Use Lucide or SF Symbols alternatives
-- **Don't hardcode colors** — Use CSS variables for light/dark support
-- **Don't skip dark mode** — Always provide both themes
-- **Don't use thin font weights** — Prefer Regular/Bold, avoid Ultralight/Thin/Light
-- **Don't ignore touch targets** — 44×44px minimum for all interactive elements
-- **Don't nest scroll views** — Avoid same-direction scroll nesting
-- **Don't use native controls** — Style all inputs with `appearance: none`
+## Progress Indicators
+- **Linear**: 4px height, 2px radius
+- **Circular**: SVG with stroke-dashoffset
+- **Spinner**: 20px, border-top animation
+- **Activity indicator**: spinning dots
 
-## Resources
+## Context Menus
+- **Long press** / Control+click triggered
+- **Short labels** + icons
+- **Separator groups** (≤3)
+- **Destructive**: red text
+- **Hide unavailable** items
 
-### Official
-- [Human Interface Guidelines](https://developer.apple.com/design/human-interface-guidelines)
-- [Apple Design Resources](https://developer.apple.com/design/resources)
-- [SF Symbols](https://developer.apple.com/sf-symbols)
+## Menus
+- **iOS layouts**: Small (4 icon rows + list), Medium (3 icons + label row + list), Large (full list)
+- **Labels**: verbs, title-style capitalization, no articles, ellipsis for extra input
+- **Toggleable** (change label/checkmark), disabled items grayed
+- **Submenus** ≤1 level deep
 
-### Web Tools
-- [Lucide Icons](https://lucide.dev) — SF Symbols alternative for web
-- [Tailwind CSS](https://tailwindcss.com) — Utility-first CSS
-- [Radix UI](https://www.radix-ui.com) — Accessible components
+## Avatars
+- **Sizes**: xs (24px), sm (32px), md (44px), lg (56px), xl (72px)
+- **Circle shape**
+- **Initials**: 18px, semibold
+- **Group**: overlapping with border
 
-### Inspiration
-- [Apple.com](https://www.apple.com)
-- [Linear](https://linear.app)
-- [Stripe](https://stripe.com)
+## Badges
+- **Min width**: 20px, height: 20px
+- **Colors**: red (default), blue (primary), green (success), orange (warning)
+- **Dot badge**: 8px circle
+- **Padding**: 0 6px
+
+## Chips / Tags
+- **Height**: 28px
+- **Radius**: 14px (pill)
+- **Background**: fill-secondary
+- **Active**: accent color bg
+- **Close button**: 16px circle
+
+## Skeleton Loading
+- **Shimmer animation**: 1.5s infinite
+- **Background**: linear-gradient with fill colors
+- **Match content** layout
+- **Border radius**: 8px
+
+## Toast / Notification
+- **Position**: fixed, top 56px
+- **Border left**: 4px colored accent
+- **Animation**: slide down
+- **Duration**: 3-5 seconds
+- **Types**: success, error, warning, info
+
+## Page Controls
+- **Dots**: 8px circle
+- **Active**: filled
+- **Inactive**: outline or transparent
+- **Max ~10 dots**
+- **Centered** at bottom
+
+## Gauges
+- **Display value** within a range
+- **Styles**: Standard, Capacity, Accessory
+- **Supports gradient** fills
+- **macOS**: Continuous/Discrete/Tiered
+
+## Rating Indicators
+- **Star symbols** for ranking
+- **Horizontal equal** spacing
+- **No partial symbols**
+- **Read-only** display
+
+## Activity Rings
+- **Move**: #FF2D55 (red)
+- **Exercise**: #30D158 (green)
+- **Stand**: #007AFF (blue)
+- **Must use** black background
+- **Read-only**, cannot change colors
+
+## Widgets
+- **iOS Small**: 170×170pt, Medium: 364×170pt, Large: 364×382pt
+- **iPad**: Small 160×160pt, Medium 356×160pt, Large 356×356pt, Extra Large 748×356pt
+- **Accessory**: Circular 72×72pt, Rectangular 160×72pt, Inline 234×26pt
+- **Rendering**: Full-color / Accented / Vibrant
+- **Standard margins**: 16pt, minimum 11pt
+
+## Live Activities
+- **Track real-time** progress (delivery, sports, fitness)
+- **Max 8 hours**
+- **Compact**: 52.33×36.67pt
+- **Expanded**: 371×84-160pt
+- **Dynamic Island**: 230pt (Pro) / 250pt (Pro Max)
+
+## Notifications
+- **Requires** user permission
+- **Support custom** sounds, action buttons (max 4)
+- **Badge displays** unread count
+- **watchOS**: Short Look / Long Look
+
+## Charts
+- **Bar/Line/Point** marker types
+- **Fixed/dynamic** axis ranges
+- **Tick marks**, grid lines, titles, annotations, legends
+- **Interactive** (drag to view values)
+- **Full accessibility** (VoiceOver + Audio Graphs)
+
+## Image Views
+- **Single image** or animation sequence
+- **Stretchable/scaleable**/fit/position
+- **Transparent/opaque** background
+- **Not interactive** by default
+
+## Text Views
+- **Multi-line** formatted text, optionally editable
+- **Leading aligned**, system label colors
+- **Supports multiple** fonts/colors/alignments/Dynamic Type
+- **iOS**: multiple keyboard types
+
+## Web Views
+- **Load and display** HTML/website content in-app
+- **Support forward/back** navigation (must enable)
+- **Don't build** full-featured browser

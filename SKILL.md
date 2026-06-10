@@ -6,7 +6,7 @@ author: Hermes Agent
 license: MIT
 metadata:
   source: https://developer.apple.com/design/human-interface-guidelines
-  last_updated: 2026-06-11
+  last_updated: "2026-06-11"
   platform: web
   tags: [design, apple, ui, typography, color, layout, components, dark-mode, materials, motion]
 ---
@@ -21,6 +21,7 @@ Apple's Human Interface Guidelines adapted for web development. Complete design 
 - `references/components.md` — All UI components with CSS implementations
 - `references/patterns.md` — 25 design patterns (loading, onboarding, searching, etc.)
 - `references/additional-components.md` — 35 additional components (charts, widgets, notifications, etc.)
+- `references/scraping-guide.md` — How to scrape Apple HIG (JS-rendered SPA), page inventory, parallel strategy
 
 ## Coverage Summary
 
@@ -160,6 +161,8 @@ Apple's Human Interface Guidelines adapted for web development. Complete design 
 - **Don't ignore touch targets** — 44×44px minimum for all interactive elements
 - **Don't nest scroll views** — Avoid same-direction scroll nesting
 - **Don't use native controls** — Style all inputs with `appearance: none`
+- **Don't claim completeness without verification** — Apple HIG has 70+ pages across Foundations, Components, Patterns, Inputs, Technologies. The nav tree is JS-rendered and won't fully expand via browser_console. Always cross-check against the official site structure before claiming full coverage. When user asks "are you sure?", they're usually right that something's missing.
+- **Skill structure matters** — When creating or updating skills, follow the standard format: frontmatter (name, description, version, author, license, metadata), Quick Reference index, Coverage Summary, concise main file with details in references/. A 1800-line SKILL.md is too long — move detailed specs to references/.
 
 ## Resources
 
