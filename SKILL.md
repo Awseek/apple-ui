@@ -1,6 +1,6 @@
 ---
 name: apple-ui
-description: "Apple Human Interface Guidelines — complete design system for web: principles, colors, typography, layout, components, patterns, dark mode, accessibility, materials, motion, writing."
+description: "Apple Human Interface Guidelines — practical web adaptation of design system: principles, colors, typography, layout, components, patterns, dark mode, accessibility, materials, motion, writing."
 version: 1.0.0
 author: Hermes Agent
 license: MIT
@@ -8,30 +8,34 @@ metadata:
   source: https://developer.apple.com/design/human-interface-guidelines
   last_updated: "2026-06-11"
   platform: web
+  coverage: web-relevant content only
   tags: [design, apple, ui, typography, color, layout, components, dark-mode, materials, motion]
 ---
 
 # Apple UI Design System
 
-Apple's Human Interface Guidelines adapted for web development. Complete design tokens, component specs, and patterns — all in CSS/HTML.
+Apple's Human Interface Guidelines adapted for web development. Practical web adaptation of design tokens, component specs, and patterns — all in CSS/HTML.
 
 ## Quick Reference
 
-- `references/foundations.md` — Color, typography, layout, materials, motion, dark mode specs
-- `references/components.md` — All UI components with CSS implementations
-- `references/patterns.md` — 25 design patterns (loading, onboarding, searching, etc.)
-- `references/additional-components.md` — 35 additional components (charts, widgets, notifications, etc.)
+- `references/apple-hig-specs.md` — Color, typography, layout, materials, motion, dark mode specs
+- `references/apple-hig-components.md` — All UI components with CSS implementations
+- `references/apple-hig-patterns.md` — 25 design patterns (loading, onboarding, searching, etc.)
+- `references/apple-hig-additional-components.md` — 35 additional components (charts, widgets, notifications, etc.)
 - `references/scraping-guide.md` — How to scrape Apple HIG (JS-rendered SPA), page inventory, parallel strategy
+- `references/demo-deployment.md` — Demo site deployment steps, nginx config, DNS/SSL pitfalls
 
 ## Coverage Summary
 
 | Category | Pages | Status |
 |----------|-------|--------|
-| Foundations | 18/18 | ✅ Complete |
-| Components | 50+ | ✅ Complete |
-| Patterns | 25/25 | ✅ Complete |
+| Foundations | 18/18 | ✅ Covered |
+| Components | 50+ | ✅ Covered |
+| Patterns | 25/25 | ✅ Covered |
 | Inputs (hardware) | 13 | ⏭️ Skipped (not web-relevant) |
 | Technologies | N/A | ⏭️ Skipped (platform-specific) |
+
+> Note: Coverage is based on web-relevant Apple HIG content. Not all native platform features translate directly to web.
 
 ## Design Principles
 
@@ -58,12 +62,24 @@ Apple's Human Interface Guidelines adapted for web development. Complete design 
   /* Backgrounds */
   --bg-primary: #FFFFFF;
   --bg-secondary: #F2F2F7;
+  --bg-tertiary: #E5E5EA;
   --bg-elevated: #FFFFFF;
   
   /* Labels */
   --label-primary: #000000;
   --label-secondary: rgba(60, 60, 67, 0.6);
   --label-tertiary: rgba(60, 60, 67, 0.3);
+  --label-quaternary: rgba(60, 60, 67, 0.18);
+  
+  /* Fills */
+  --fill-primary: rgba(120, 120, 128, 0.2);
+  --fill-secondary: rgba(120, 120, 128, 0.16);
+  --fill-tertiary: rgba(120, 120, 128, 0.12);
+  --fill-quaternary: rgba(120, 120, 128, 0.08);
+  
+  /* Separator */
+  --separator: rgba(60, 60, 67, 0.12);
+  --separator-opaque: #C6C6C8;
   
   /* Spacing (4px base) */
   --space-1: 4px;
@@ -94,10 +110,18 @@ Apple's Human Interface Guidelines adapted for web development. Complete design 
   :root {
     --bg-primary: #000000;
     --bg-secondary: #1C1C1E;
+    --bg-tertiary: #2C2C2E;
     --bg-elevated: #1C1C1E;
     --label-primary: #FFFFFF;
     --label-secondary: rgba(235, 235, 245, 0.6);
     --label-tertiary: rgba(235, 235, 245, 0.3);
+    --label-quaternary: rgba(235, 235, 245, 0.18);
+    --fill-primary: rgba(120, 120, 128, 0.36);
+    --fill-secondary: rgba(120, 120, 128, 0.32);
+    --fill-tertiary: rgba(120, 120, 128, 0.24);
+    --fill-quaternary: rgba(120, 120, 128, 0.18);
+    --separator: rgba(84, 84, 88, 0.36);
+    --separator-opaque: #38383A;
   }
 }
 ```
@@ -154,15 +178,31 @@ Apple's Human Interface Guidelines adapted for web development. Complete design 
 
 ## Pitfalls
 
+### Design Pitfalls
 - **Don't use emoji as icons** — Use Lucide or SF Symbols alternatives
 - **Don't hardcode colors** — Use CSS variables for light/dark support
 - **Don't skip dark mode** — Always provide both themes
 - **Don't use thin font weights** — Prefer Regular/Bold, avoid Ultralight/Thin/Light
 - **Don't ignore touch targets** — 44×44px minimum for all interactive elements
 - **Don't nest scroll views** — Avoid same-direction scroll nesting
-- **Don't use native controls** — Style all inputs with `appearance: none`
-- **Don't claim completeness without verification** — Apple HIG has 70+ pages across Foundations, Components, Patterns, Inputs, Technologies. The nav tree is JS-rendered and won't fully expand via browser_console. Always cross-check against the official site structure before claiming full coverage. When user asks "are you sure?", they're usually right that something's missing.
-- **Skill structure matters** — When creating or updating skills, follow the standard format: frontmatter (name, description, version, author, license, metadata), Quick Reference index, Coverage Summary, concise main file with details in references/. A 1800-line SKILL.md is too long — move detailed specs to references/.
+- **Style native controls carefully** — When custom appearance is needed, use `appearance: none` but preserve semantics, keyboard navigation, focus states, and screen reader behavior
+
+### Skill Usage Pitfalls
+- **NEVER claim "complete" without verification** — Apple HIG has 70+ pages across Foundations, Components, Patterns, Inputs, Technologies. The nav tree is JS-rendered and won't fully expand via browser_console. Always cross-check against the official site structure before claiming full coverage. When user asks "are you sure?", they're usually right that something's missing. This happened 4+ times in the original session — don't repeat it.
+- **Verify with page inventory** — Before claiming coverage, list all pages in each category (Foundations: 18, Components: 64 in 8 categories, Patterns: 25, Inputs: 13) and cross-check against what you've actually scraped.
+- **Web vs native distinction** — Inputs section (13 pages: gestures, Digital Crown, Apple Pencil, etc.) and Technologies section are hardware/platform-specific, NOT web-relevant. Don't include them in web coverage claims.
+
+### Deployment Pitfalls
+- **DNS verification** — When deploying to a new subdomain, always verify DNS points to the correct server (not just any server with that domain). Use `nslookup` to check. A 404 often means DNS is pointing to the wrong server.
+- **nginx default_server** — When multiple sites share one nginx, add a `default_server` catch-all to avoid 403 on bare IP access.
+- **Verify reference files after writing** — After using `skill_manage write_file`, read back the file to confirm content is correct. One session wrote SKILL.md content into a reference file by mistake.
+- **Use parallel scraping** — Apple HIG scraping takes ~20min serial vs ~4min parallel with `delegate_task` batch of 3 workers.
+- **URL paths change** — Some pages redirect (e.g., `/table-views` → `/lists-and-tables`). Always verify current URLs.
+
+### Skill Structure
+- **Keep SKILL.md concise** — Target ~200 lines max. Move detailed specs to references/. A 1800-line SKILL.md is too long.
+- **Always include**: frontmatter (name, description, version, author, license, metadata), Quick Reference index, Coverage Summary, Key Numbers, Pitfalls, Resources.
+- **User preference**: "别废话直接干" — action over explanation. Be concise.
 
 ## Resources
 

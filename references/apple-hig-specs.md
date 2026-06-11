@@ -1,4 +1,4 @@
-# Apple HIG Complete Specifications
+# Apple HIG Specifications (Web-Relevant)
 
 > Extracted from developer.apple.com/design/human-interface-guidelines/
 > Last updated: June 2026
@@ -60,15 +60,15 @@
 
 ---
 
-## Additional Foundations (detailed in apple-hig-missing.md)
+## Additional Foundations
 
-The following foundations have brief coverage above but detailed implementation guidance in `references/apple-hig-missing.md`:
-- Accessibility — Detailed ARIA patterns, screen reader support
-- App Icons — Sizes, masks, guidelines per platform
-- Branding — Logo usage, color palette
-- Immersive Experiences — visionOS spatial computing
-- Inclusion — Diversity, representation in imagery
-- Privacy — Data handling, permission flows
-- Right to Left — RTL layout support
-- SF Symbols — Icon library usage, alternatives
-- Spatial Layout — visionOS 3D layout patterns
+The following foundations have brief coverage above. For web development, focus on the accessibility section above. The other topics (App Icons, Branding, Immersive Experiences, Inclusion, Privacy, RTL, SF Symbols, Spatial Layout) are either platform-specific or covered in other references:
+- Accessibility — Detailed ARIA patterns, screen reader support (covered above)
+- App Icons — Sizes, masks, guidelines per platform (platform-specific)
+- Branding — Logo usage, color palette (project-specific)
+- Immersive Experiences — visionOS spatial computing (not web-relevant)
+- Inclusion — Diversity, representation in imagery (content-specific)
+- Privacy — Data handling, permission flows (covered in patterns)
+- Right to Left — RTL layout support (CSS logical properties)
+- SF Symbols — Icon library use Lucide as web alternative
+- Spatial Layout — visionOS 3D layout patterns (not web-relevant)
